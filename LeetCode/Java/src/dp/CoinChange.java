@@ -17,10 +17,10 @@ public class CoinChange {
             for(int index = 0; index < coins.length; ++index) {
                 if(coins[index] <= val) {
                     int currCount = dp[val - coins[index]];
-
-                    if(currCount != Integer.MAX_VALUE && currCount + 1 < dp[val]) {
-                        dp[val] = currCount + 1;
-                    }
+                    dp[val] = Math.min(dp[val], currCount + 1);
+                }
+                else {
+                    break;
                 }
             }
         }
