@@ -1,55 +1,59 @@
-import dp.CoinChange;
+import bitmanipulation.SetOfPositiveNumbers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int output = new Solution().numSquares(253);
-        System.out.println("output is : " + output);
+        SetOfPositiveNumbers obj = new SetOfPositiveNumbers();
+        obj.add(34);
+        obj.add(21);
+        obj.add(70);
+        obj.add(98);
+        obj.add(127);
+        obj.add(200);
+        obj.add(310);
+        obj.add(Integer.MAX_VALUE);
+
+        System.out.println(1000000 * 32);
+
+        obj.printSet();
+
     }
 }
-class Solution {
-    public int numSquares(int n) {
-        List<Integer> perfectSquares = new ArrayList<>(101);
+class RandomizedSet {
 
-        for(int i = 1; i < 101; ++i) {
-            if(i * i <= n) {
-                perfectSquares.add(i * i);
-            }
-            else {
-                break;
-            }
-        }
+    private HashSet<Integer> set;
+    public Iterator<Integer> pointer;
 
-        if(perfectSquares.contains(n)) {
-            return 1;
-        }
-        int count = getMinimumCount(perfectSquares, n);
-
-        return count;
+    public RandomizedSet() {
+        set = new HashSet<>(200000);
+        pointer = set.iterator();
     }
 
-    public int getMinimumCount(List<Integer> perfectSquares, int number) {
-        int allCalculations[] = new int[number + 1];
+    public boolean insert(int val) {
+        return set.add(val);
+    }
 
-        Arrays.fill(allCalculations, Integer.MAX_VALUE);
-        allCalculations[0] = 0;
-        allCalculations[1] = 1;
+    public boolean remove(int val) {
+        return set.remove(val);
+    }
 
-        for(int num = 2; num <= number; ++num) {
-            for(int perfSqure = 0; perfSqure < perfectSquares.size(); ++perfSqure) {
-                if(perfectSquares.get(perfSqure) <= num) {
-                    int alreadyCalculated = allCalculations[num - perfectSquares.get(perfSqure)];
-                    allCalculations[num] = Math.min(allCalculations[num], alreadyCalculated + 1);
-                }
-                else {
-                    break;
-                }
+    public int getRandom() {
+        int index = new Random().nextInt(set.size());
+        for(int num : set) {
+            if(index == 0) {
+                return num;
             }
+            --index;
         }
-
-        return allCalculations[number];
+        return Integer.MIN_VALUE;
     }
 }
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
