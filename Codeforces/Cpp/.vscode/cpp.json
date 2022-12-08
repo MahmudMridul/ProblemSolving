@@ -1,0 +1,155 @@
+{
+
+    "Print to console 1": 
+    {
+        "prefix": "ol1",
+        "body": [
+            "cout << << endline;"
+        ],
+        "description": "Output to console"
+    },
+
+    "Print to console 2": 
+    {
+        "prefix": "ol2",
+        "body": [
+            "cout << << << endline;"
+        ],
+        "description": "Output to console"
+    },
+
+    "Print to console 3": 
+    {
+        "prefix": "ol3",
+        "body": [
+            "cout << << << << endline;"
+        ],
+        "description": "Output to console"
+    },
+
+    "Print to console without new line 1": 
+    {
+        "prefix": "os1",
+        "body": [
+            "cout << << \" \";"
+        ],
+        "description": "Output to console"
+    },
+
+    "Print to console without new line 2": 
+    {
+        "prefix": "os2",
+        "body": [
+            "cout << << << \" \";"
+        ],
+        "description": "Output to console"
+    },
+
+    "Print to console without new line 3": 
+    {
+        "prefix": "os3",
+        "body": [
+            "cout << << << << \" \";"
+        ],
+        "description": "Output to console"
+    },
+
+    "Take one input": 
+    {
+        "prefix": "i1",
+        "body": [
+            "cin >> ;"
+        ],
+        "description": "Take input"
+    },
+
+    "Take two input": 
+    {
+        "prefix": "i2",
+        "body": [
+            "cin >> >> ;"
+        ],
+        "description": "Take input"
+    },
+
+    "Take three input": 
+    {
+        "prefix": "i3",
+        "body": [
+            "cin >> >> >> ;"
+        ],
+        "description": "Take input"
+    },
+
+    "Take four input": 
+    {
+        "prefix": "i4",
+        "body": [
+            "cin >> >> >> >>;"
+        ],
+        "description": "Take input"
+    },
+
+    "Take five input": 
+    {
+        "prefix": "i5",
+        "body": [
+            "cin >> >> >> >> >>;"
+        ],
+        "description": "Take input"
+    },
+
+    "Max priority queue": 
+    {
+        "prefix": "pqmax",
+        "body": [
+            "priority_queue< > ;"
+        ],
+        "description": "Max priority queue"
+    },
+
+    "Min priority queue": 
+    {
+        "prefix": "pqmax",
+        "body": [
+            "priority_queue< , vector< >, greater< > > ;"
+        ],
+        "description": "Min priority queue"
+    },
+
+    "Vector": 
+    {
+        "prefix": "v",
+        "body": [
+            "vector< > ;"
+        ],
+        "description": "Vector"
+    },
+
+    "Vector of pair": 
+    {
+        "prefix": "vp",
+        "body": [
+            "vector< pair< , > > ;"
+        ],
+        "description": "Vector of pair"
+    },
+
+    "Set": 
+    {
+        "prefix": "s",
+        "body": [
+            "set< > ;"
+        ],
+        "description": "Set"
+    },
+
+    "Map": 
+    {
+        "prefix": "m",
+        "body": [
+            "map< , > ;"
+        ],
+        "description": "Map"
+    },
+}
