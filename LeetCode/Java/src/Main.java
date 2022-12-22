@@ -1,59 +1,52 @@
-import bitmanipulation.SetOfPositiveNumbers;
+import Example.InnerClass.Outer;
+import Graph.GraphAlgorithms;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        SetOfPositiveNumbers obj = new SetOfPositiveNumbers();
-        obj.add(34);
-        obj.add(21);
-        obj.add(70);
-        obj.add(98);
-        obj.add(127);
-        obj.add(200);
-        obj.add(310);
-        obj.add(Integer.MAX_VALUE);
-
-        System.out.println(1000000 * 32);
-
-        obj.printSet();
-
+        GraphAlgorithms ga = new GraphAlgorithms();
+        ArrayList<ArrayList<Integer>> graph = ga.createUndirectedUnweightedGraph("src\\Resources\\undunw.txt");
+        ga.breadthFirstSearch(graph, 1);
     }
 }
-class RandomizedSet {
+class Solution {
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+        Set<Integer> first = new HashSet<>(n);
+        Set<Integer> second = new HashSet<>(n);
 
-    private HashSet<Integer> set;
-    public Iterator<Integer> pointer;
+        for(int i = 0; i < dislikes.length; ++i) {
+            int one = dislikes[i][0];
+            int two = dislikes[i][1];
 
-    public RandomizedSet() {
-        set = new HashSet<>(200000);
-        pointer = set.iterator();
-    }
+            if(!first.contains(one) && !second.contains(one)) {
+                first.add(one);
 
-    public boolean insert(int val) {
-        return set.add(val);
-    }
-
-    public boolean remove(int val) {
-        return set.remove(val);
-    }
-
-    public int getRandom() {
-        int index = new Random().nextInt(set.size());
-        for(int num : set) {
-            if(index == 0) {
-                return num;
+                if(first.contains(two)) {
+                    return false;
+                }
+                if(!second.contains(two)) {
+                    second.add(two);
+                }
             }
-            --index;
+            else if(first.contains(one)) {
+                if(first.contains(two)) {
+                    return false;
+                }
+                if(!second.contains(two)) {
+                    second.add(two);
+                }
+            }
+            else if(second.contains(one)) {
+                if(second.contains(two)) {
+                    return false;
+                }
+                if(!first.contains(two)) {
+                    first.add(two);
+                }
+            }
         }
-        return Integer.MIN_VALUE;
+
+        return true;
     }
 }
-
-/**
- * Your RandomizedSet object will be instantiated and called as such:
- * RandomizedSet obj = new RandomizedSet();
- * boolean param_1 = obj.insert(val);
- * boolean param_2 = obj.remove(val);
- * int param_3 = obj.getRandom();
- */
