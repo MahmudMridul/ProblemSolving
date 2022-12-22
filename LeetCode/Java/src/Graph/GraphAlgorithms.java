@@ -2,10 +2,7 @@ package Graph;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class GraphAlgorithms {
 
@@ -61,6 +58,29 @@ public class GraphAlgorithms {
             for(int neighbour : neighbourList) {
                 if(!visited[neighbour]) {
                     queue.add(neighbour);
+                    visited[neighbour] = true;
+                }
+            }
+        }
+    }
+
+    public void depthFirstSearch(ArrayList<ArrayList<Integer>>graph, int source) {
+        if(graph == null) return;
+
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[graph.size()];
+
+        stack.push(source);
+        visited[source] = true;
+
+        while(!stack.isEmpty()) {
+            int vertex = stack.pop();
+            ArrayList<Integer> neighbourList = graph.get(vertex);
+            System.out.println(vertex);
+
+            for(int neighbour : neighbourList) {
+                if(!visited[neighbour]) {
+                    stack.push(neighbour);
                     visited[neighbour] = true;
                 }
             }
