@@ -13,7 +13,7 @@ public class GraphAlgorithms {
             String line = reader.readLine();
             StringTokenizer tokenizer = new StringTokenizer(line, " ");
 
-            int numberOfVetexes = Integer.parseInt(tokenizer.nextToken()) + 1;
+            int numberOfVetexes = Integer.parseInt(tokenizer.nextToken());
             int numberOfEdges = Integer.parseInt(tokenizer.nextToken());
 
             ArrayList<ArrayList<Integer>> graph = new ArrayList<>(numberOfVetexes);
@@ -85,5 +85,46 @@ public class GraphAlgorithms {
                 }
             }
         }
+    }
+
+    private boolean canSet(int vertex, int color, ArrayList<ArrayList<Integer>>graph, int[] vertexColor) {
+        ArrayList<Integer> neighbourList = graph.get(vertex);
+
+        for(int neighbour : neighbourList) {
+            if(color == vertexColor[neighbour]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean helper(ArrayList<ArrayList<Integer>>graph, int[] vertexColor, int numOfColors, int vertex) {
+        if(vertex == graph.size()) return true;
+
+        for(int color = 1; color <= numOfColors; ++color) {
+            if(canSet(vertex, color, graph, vertexColor)) {
+                vertexColor[vertex] = color;
+
+                if(helper(graph, vertexColor, numOfColors, vertex + 1)) {
+                    return true;
+                }
+                vertexColor[vertex] = 0;
+            }
+        }
+        return false;
+    }
+
+    public boolean graphColoring(ArrayList<ArrayList<Integer>>graph, int numOfColors) {
+        int[] vertexColor = new int[graph.size()];
+
+        if(!helper(graph, vertexColor, numOfColors, 0)) {
+            return false;
+        }
+
+        for(int color : vertexColor) {
+            System.out.print(color + " ");
+        }
+        System.out.println();
+        return true;
     }
 }
