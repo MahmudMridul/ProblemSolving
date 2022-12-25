@@ -127,4 +127,39 @@ public class GraphAlgorithms {
         System.out.println();
         return true;
     }
+
+    public boolean isBipartiteGraph(ArrayList<ArrayList<Integer>> graph) {
+        int[] vertexColor = new int[graph.size()];
+        Arrays.fill(vertexColor, -1);
+
+        for(int vertex = 0; vertex < graph.size(); ++vertex) {
+            if(vertexColor[vertex] == -1 && !bipartiteBfs(graph, vertexColor, vertex)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean bipartiteBfs(ArrayList<ArrayList<Integer>> graph, int[] vertexColor, int source) {
+        Queue<Integer> queue = new ArrayDeque<>(graph.size());
+
+        queue.add(source);
+        vertexColor[source] = 0;
+
+        while(!queue.isEmpty()) {
+            int vertex = queue.poll();
+            ArrayList<Integer> neighbourList = graph.get(vertex);
+
+            for(int neighbour : neighbourList) {
+                if(vertexColor[neighbour] == vertexColor[vertex]) {
+                    return false;
+                }
+                if(vertexColor[neighbour] == -1) {
+                    vertexColor[neighbour] = 1 - vertexColor[vertex];
+                    queue.add(neighbour);
+                }
+            }
+        }
+        return true;
+    }
 }
