@@ -1,25 +1,11 @@
 ﻿
 using System.Text;
 
-namespace CSh
+namespace CSh.Easy
 {
-    public class Program
+    public class LongestCommonPrefix_14
     {
-        public static void Main(string[] args)
-        {
-            string[] testStr = { "doggo", "dogu", "dogp" };
-            Solution solution = new Solution();
-            string result = solution.LongestCommonPrefix(testStr);
-            Console.WriteLine(result);
-
-            
-        }
-
-       
-    }
-
-    public class Solution
-    {
+        // 91ms 40.22MB
         public string LongestCommonPrefix(string[] strs)
         {
             StringBuilder result = new StringBuilder();
@@ -31,13 +17,13 @@ namespace CSh
                 bool isCommon = true;
                 for (int j = 1; j < strs.Length; ++j)
                 {
-                    if(first != strs[j][i])
+                    if (first != strs[j][i])
                     {
                         isCommon = false;
                         break;
                     }
                 }
-                if(isCommon)
+                if (isCommon)
                 {
                     result.Append(first);
                 }
