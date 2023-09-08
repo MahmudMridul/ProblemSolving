@@ -1,6 +1,9 @@
 LeetCode/Java/.idea/*
 LeetCode/Java/out/*
 LeetCode/Java/Java.iml
+LeetCode/CSh/bin/*
+LeetCode/CSh/obj/*
+LeetCode/CSh/.vs/*
 Codeforces/Cpp/*.exe
 Codeforces/Cpp/*.xlsx
 Codeforces/Cpp/*.txt

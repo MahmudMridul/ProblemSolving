@@ -1,52 +1,34 @@
-import Example.InnerClass.Outer;
-import Graph.GraphAlgorithms;
+import Example.NestedClass.Outer;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        GraphAlgorithms ga = new GraphAlgorithms();
-        ArrayList<ArrayList<Integer>> graph = ga.createUndirectedUnweightedGraph("src\\Resources\\undunw.txt");
-        ga.breadthFirstSearch(graph, 1);
+        int[] nums = {4,5,0,-2,-3,1};
+        int k = 5;
+        System.out.println(new Solution().subarraysDivByK(nums, k));
     }
 }
+
 class Solution {
-    public boolean possibleBipartition(int n, int[][] dislikes) {
-        Set<Integer> first = new HashSet<>(n);
-        Set<Integer> second = new HashSet<>(n);
+    public int count;
+    public int k;
+    public int[] nums;
 
-        for(int i = 0; i < dislikes.length; ++i) {
-            int one = dislikes[i][0];
-            int two = dislikes[i][1];
+    public int subarraysDivByK(int[] nums, int d) {
+        this.nums = nums;
+        this.k = d;
+        getAllSubArray(0, 0);
+        return count;
+    }
 
-            if(!first.contains(one) && !second.contains(one)) {
-                first.add(one);
-
-                if(first.contains(two)) {
-                    return false;
-                }
-                if(!second.contains(two)) {
-                    second.add(two);
-                }
-            }
-            else if(first.contains(one)) {
-                if(first.contains(two)) {
-                    return false;
-                }
-                if(!second.contains(two)) {
-                    second.add(two);
-                }
-            }
-            else if(second.contains(one)) {
-                if(second.contains(two)) {
-                    return false;
-                }
-                if(!first.contains(two)) {
-                    first.add(two);
-                }
-            }
+    public void getAllSubArray(int index, int sum) {
+        if(index == nums.length) {
+            System.out.println(sum);
         }
-
-        return true;
+        else {
+            getAllSubArray(index + 1, sum + nums[index]);
+            getAllSubArray(index + 1, sum);
+        }
     }
 }
