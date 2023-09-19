@@ -10,7 +10,9 @@ namespace CSh
             string[] testStr = { "doggo", "dogu", "dogp" };
             Solution solution = new Solution();
             string result = solution.LongestCommonPrefix(testStr);
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
+            string exm = "somestring";
+            Console.WriteLine(exm.Remove(2));
 
             
         }
